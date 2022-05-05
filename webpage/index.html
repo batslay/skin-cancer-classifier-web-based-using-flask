@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cutix Skin Cancer Class Classification</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">  
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href=''>Cutix Web Based</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#prediction">Prediction</a></li>
+                    <li><a href="#tipe-cancer">Type Explanation</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <!-- untuk home -->
+        <section id="home">
+            <img src="https://image.shutterstock.com/image-vector/skin-cancer-melanoma-dermatology-problem-600w-1901860639.jpg"/>
+            <div class="kolom">
+                <p class="deskripsi">Kanker Kulit</p>
+                <h2>Pengertian Kanker Kulit</h2>
+                <p>Kanker kulit diberi nama sesuai dengan jenis sel yang terpengaruh yaitu sel kulit. 
+                Kanker kulit merupakan kanker yang umum terjadi. 
+                Menurut World Health Organization, sebanyak 160.000 orang mengidap kanker kulit setiap tahun di dunia. 
+                Tingkat kejadian kanker kulit di seluruh dunia telah meningkat pesat. 
+                Walaupun insidensi kanker kulit cukup tinggi, angka kematian yang diakibatkan olehnya tidak terlalu tinggi. 
+                Karena kulit adalah organ  terbesar pada tubuh manusia, organ yang paling terlihat secara kasat mata, 
+                mudah bagi kita untuk mendeteksi adanya kelainan pada kulit. 
+                Di Indonesia, penderita kanker kulit terbilang relatif sedikit apabila dibandingkan dengan ketiga negara tersebut. 
+                Namun demikian, kanker kulit ini harus mendapat perhatian sedini mungkin, 
+                karena tidak hanya dapat menyebabkan kecacatan yang dapat merusak penampilan, 
+                tetapi juga dapat mengakibatkan kematian apabila sudah masuk ke stadium lanjut. 
+                Oleh karena itu, kanker kulit bisa dan harus diobati secara dini.</p>
+            </div>
+        </section>
+
+        <!-- untuk prediction -->
+        <section id="prediction">
+            <div class="kolom">
+                <p class="deskripsi">Prediction Skin Cancer</p>
+                <h2>Prediksi Tipe Kanker Kulit</h2>
+                <p>Dataset yang digunakan untuk melakukan training model prediction ini menggunakan HAM 10000 dataset yang berisi 10000 gambar yang mengklasifikan 7 tipe sel (kelas) kanker kulit.</p>
+                <p>Dari tiga jenis kanker yang ganas (malignant), Melanoma (mel) paling berbahaya, Basal Cell Carcinoma (bcc) jarang menyebar ke seluruh tubuh tetapi harus segera diangkat dan Actinic Keratoses (akiec) tumbuh lambat dan sering dapat diobati tanpa operasi.</p>
+                <p>Tipe kanker kulit jinak (Benign) -> Melanocytic Nevi (nv), Benign Keratosis (bkl), Vascular Lesions (vasc), Dermatofibroma (df).</p>
+                <p>Tipe kanker kulit ganas (Malignant) -> Melanoma (mel), Basal Cell Carcinoma (bcc), Actinic Keratoses (akiec).</p>
+                <p>Aplikasi ini hanya merupakan media screening pengklasifikasi tipe kanker kulit, bersifat prediktif sehingga hasil lebih pastinya tetap harus dilakukan pemeriksaan lebih lanjut oleh dokter kulit.</p>
+            </div>
+<!--            <img src="https://img.freepik.com/free-vector/online-learning-isometric-concept_1284-17947.jpg?size=626&ext=jpg&ga=GA1.2.1769275626.1605867161"/>-->
+            <div class="predict-section">
+                <p style="font-size: 20px;color:#364f6b;font-weight:bold;font-family:comic sans ms;">Upload foto kulit untuk diprediksi!</p>
+                <form id="upload-file" method="post" enctype="multipart/form-data">
+                    <label for="imageUpload" class="upload-label">
+                        Upload Photo
+                    </label>
+                    <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+                </form>
+
+                <div class="image-section" style="display:none;">
+                    <div class="img-preview">
+                        <div id="imagePreview">
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+                    </div>
+                </div>
+
+                <div class="loader" style="display:none;"></div>
+
+                <h3 id="result">
+                    <span> </span>
+                </h3>
+
+            </div>
+        </section>
+
+        <!-- untuk penjelasan tipe cancer -->
+        <section id="tipe-cancer">
+            <div class="tengah">
+                <div class="kolom">
+                    <p class="deskripsi">Tipe/Jenis Kanker Kulit</p>
+                    <h2>7 Tipe Kanker Kulit</h2>
+                </div>
+
+                <div class="tipe-cancer-list">
+                    <p><b>"Actinic Keratoses (akiec)"</b> adalah varian non-invasif yang umum dari karsinoma sel skuamosa yang dapat diobati tanpa operasi. Kulit di sekitarnya biasanya ditandai dengan kerusakan parah akibat sinar matahari (sinar UV). Akiec lebih sering terjadi pada wajah, sering terlihat seperti bercak kecil, kasar, bersisik pada kulit.</p>
+                    <p><b>"Basal cell carcinoma (bcc)"</b> adalah varian umum dari kanker kulit epitel yang jarang bermetastasis (menyebar). biasanya dimulai sebagai benjolan berbentuk mutiara di bagian wajah, telinga atau leher. Jika berkembang di bagian dada atau punggung, kanker ini terlihat seperti bagian kulit yang bersisik atau kering.</p>
+                    <p><b>"Benign keratosis-like lesions (bkl)"</b> adalah kelas generik jinak yang termasuk seborrheic keratosis ("kutil pikun"). Dari pandangan dermatoscopic, bkl dapat menunjukkan bentuk yang meniru melanoma. Tampilan dermatoskopiknya bervariasi menurut lokasi anatomi dan jenisnya.</p>
+                    <p><b>"Dermatofibroma (df)"</b> adalah lesi kulit jinak yang dianggap sebagai proliferasi jinak atau reaksi inflamasi terhadap minimal trauma. Presentasi dermatoskopik yang paling umum adalah garis retikuler di perifer dengan patch putih berpusat yang menunjukkan fibrosis.</p>
+                    <p><b>"Melanocytic nevi (nv)"</b>" adalah tumor jinak  dan muncul dalam berbagai varian, yang semuanya termasuk dalam seri nv. Varian ini mungkin berbeda secara signifikan dari sudut pandang dermatoskopik. Berbeda dengan melanoma, mereka biasanya simetris dalam hal distribusi warna dan struktur bentuk.</p>
+                    <p><b>"Melanoma (mel)"</b> adalah salah satu bentuk kanker kulit yang lebih serius dan terkadang muncul dari tahi lalat yang ada di kulit. Lebih umum melanoma muncul sebagai tanda atau tahi lalat baru pada kulit normal. Melanoma dapat muncul di mana saja di tubuh tetapi paling sering terjadi pada pria di punggung, dan pada wanita di kaki.</p>
+                    <p><b>"Vascular lesions (vasc)"</b> dalam kumpulan data dari angioma ceri hingga angiokeratoma dan granuloma piogenik. Angioma secara dermatoskopis ditandai dengan warna merah atau ungu dan struktur padat berbatas yang dikenal sebagai gumpalan merah (lakuna). Vasc adalah kelainan yang relatif umum pada kulit dan jaringan di bawahnya, lebih dikenal sebagai tanda lahir.</p>
+                </div>    
+            </div>
+        </section>
+
+        <!-- untuk partners -->
+        <section id="partners">
+            <div class="tengah">
+                <div class="kolom">
+                    <p class="deskripsi">Partners</p>
+                    <h2>Partners</h2>
+                    <p>Terima kasih atas segala bentuk bantuan dan ilmunya.</p>
+                </div>
+
+                <div class="partner-list">
+                    <div class="kartu-partner">
+                        <img src="https://media-exp3.licdn.com/dms/image/C5603AQEwEwFxDrLV-Q/profile-displayphoto-shrink_800_800/0/1613909430918?e=1632355200&v=beta&t=Axe2lWncABLQWvCZiQM1dhLWlTxGT5XVEyhNMAlKkSc"/>
+                        <p>Ali Rohman</p>
+                        <p>H1A018021</P>
+                        <p>Teknik Elektro Unsoed</p>
+                    </div>
+                    <div class="kartu-partner">
+                        <img src="https://media-exp3.licdn.com/dms/image/C5603AQGEePDmE-KUmA/profile-displayphoto-shrink_800_800/0/1613655279270?e=1632355200&v=beta&t=O0RdrkP2g17AiSp0Qj18dcipY9NoK5vpnY9LXmYMznc"/>
+                        <p>Arif Fahrudin</p>
+                        <p>H1A018069</P>
+                        <p>Teknik Elektro Unsoed</p>
+                    </div>
+                    <div class="kartu-partner">
+                        <img src="https://media-exp3.licdn.com/dms/image/C5603AQHAjcF0hQ-Tzw/profile-displayphoto-shrink_800_800/0/1614481544762?e=1632355200&v=beta&t=l4Wk2-CoqMVtJSU3UAaDSKiWEi_gfV9qyVSBP4dhK5E"/>
+                        <p>Nur Ardli</p>
+                        <p>H1A018045</P>
+                        <p>Teknik Elektro Unsoed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="contact">
+        <div class="wrapper">
+            <div class="footer">
+                <div class="footer-section">
+                    <h3>Cutix</h3>
+                    <p>Cutix adalah media klasifikasi berbasis website untuk screening klasifikasi 7 tipe kanker kulit berdasarkan kondisi lesi kulit berpigmen.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Disclaimer</h3>
+                    <p>Hasil klasifikasi yang didapat bersifat PREDIKTIF(Prediksi), walaupun akurasi model 99% ini hanya sebagai media screening dan tetap harus dilakukan pemeriksaan lebih lanjut oleh dokter kulit untuk kepastian.</p>
+                    <p><a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T">Detail Penjelasan Kanker Kulit<a/></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Address</h3>
+                    <p>Jl. Patuha Raya, Kayuringin Jaya, Bekasi Selatan, Kota Bekasi. Kode Pos: 17144</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Social Media</h3>
+                    <p><b>Instagram : </b><a href="https://www.instagram.com/alirohman57/">Ali Rohman</a></p>
+                    <p><b>LinkedIn : </b><a href="https://www.linkedin.com/in/alirohman/">Ali Rohman</a></p>
+                    <p><b>Github : </b><a href="https://github.com/batslay">Ali Rohman<a/></p>
+                    <p><b>No. HP : </b>089669232481</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="copyright">
+        <div class="wrapper">
+            &copy; 2021. <b>Cutix.</b> All Rights Reserved.
+        </div>
+    </div>
+    
+</body>
+
+<footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
+</footer>
+
+</html>
